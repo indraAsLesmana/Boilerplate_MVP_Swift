@@ -1,5 +1,5 @@
-def generate(inputName: str = "Test"):
-    fScreen = open(f"./HC{inputName}Screen.swift", "w")
+def generate(inputName: str = "Test", folderPath: str = ""):
+    fScreen = open(f"{folderPath}/HC{inputName}Screen.swift", "w")
     fScreen.write("import Foundation\n"
                   "import HCBaseModule\n"
                   "import HCViewModule\n\n"
@@ -13,7 +13,7 @@ def generate(inputName: str = "Test"):
     fScreen.close()
 
     # Model class
-    fModel = open(f"./HC{inputName}ScreenModel.swift", "w")
+    fModel = open(f"{folderPath}/HC{inputName}ScreenModel.swift", "w")
     fModel.write("import Foundation\n"
                  "import HCBaseModule\n\n"
                  f"open class HC{inputName}ScreenModel: HCMVPModel {{\n"
@@ -23,7 +23,7 @@ def generate(inputName: str = "Test"):
     fModel.close()
 
     # Presenter class
-    fPresenter = open(f"./HC{inputName}ScreenPresenter.swift", "w")
+    fPresenter = open(f"{folderPath}/HC{inputName}ScreenPresenter.swift", "w")
     fPresenter.write("import Foundation\n"
                      "import HCBaseModule\n"
                      "import HCViewModule\n\n"
@@ -42,6 +42,20 @@ def generate(inputName: str = "Test"):
     fPresenter.close()
 
 
-print("Input class name")
-className = str(input())
-generate(className)
+print("Input path folder name>>>")
+folderPath = str(input().strip())
+if folderPath == "":
+    raise Exception("path folder must be input")
+
+print("Input class name>>>")
+className = str(input().strip())
+if className == "":
+    raise Exception("className must be input")
+
+print("Input xcodeproj path>>>")
+xcodeprojPath = str(input().strip())
+if xcodeprojPath == "":
+    raise Exception("className must be input")
+
+generate(className, folderPath)
+
