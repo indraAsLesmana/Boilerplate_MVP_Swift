@@ -1,3 +1,6 @@
+from pbxproj import XcodeProject
+
+
 def generate(inputName: str = "Test", folderPath: str = ""):
     fScreen = open(f"{folderPath}/HC{inputName}Screen.swift", "w")
     fScreen.write("import Foundation\n"
@@ -59,3 +62,28 @@ if xcodeprojPath == "":
 
 generate(className, folderPath)
 
+# time.sleep(1)
+
+pbxprojPath = f"{xcodeprojPath}/project.pbxproj"
+
+project = XcodeProject.load(pbxprojPath)
+# project.add_other_ldflags('-ObjC')
+
+fScreenPath = f"{folderPath}/HC{className}Screen.swift"
+fModelPath = f"{folderPath}/HC{className}ScreenModel.swift"
+fPresenterPath = f"{folderPath}/HC{className}ScreenPresenter.swift"
+
+# targetScreenName = f"HC{className}Screen.swift"
+# targetModelName = f"HC{className}ScreenModel.swift"
+# targetPresenterName = f"HC{className}ScreenPresenter.swift"
+
+# project.add_file(folderPath, target_name=[fScreenPath, fModelPath, fPresenterPath], force=False)
+# project.add_file(fScreenPath, force=False)
+# project.add_file(folderPath, target_name=targetModelName, force=False)
+# project.add_file(folderPath, target_name=targetPresenterName, force=False)
+
+project.add_file(fScreenPath, force=False)
+project.add_file(fModelPath, force=False)
+project.add_file(fPresenterPath, force=False)
+
+project.save()
