@@ -41,3 +41,7 @@ def generate(inputName: str = "Test"):
                      )
     fPresenter.close()
 
+
+print("Input class name")
+className = str(input())
+generate(className)
