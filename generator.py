@@ -41,5 +41,3 @@ def generate(inputName: str = "Test"):
                      )
     fPresenter.close()
 
-
-generate()
