@@ -2,7 +2,7 @@ def generate(inputName: str = "Test"):
     fScreen = open(f"./HC{inputName}Screen.swift", "w")
     fScreen.write("import Foundation\n"
                   "import HCBaseModule\n"
-                  "import HCViewModule\n"
+                  "import HCViewModule\n\n"
                   f"public protocol HC{inputName}ScreenDelegate: HCVMVPViewDelegateBase {{\n"
                   "\n"
                   f"}}"
@@ -15,7 +15,7 @@ def generate(inputName: str = "Test"):
     # Model class
     fModel = open(f"./HC{inputName}ScreenModel.swift", "w")
     fModel.write("import Foundation\n"
-                 "import HCBaseModule\n"
+                 "import HCBaseModule\n\n"
                  f"open class HC{inputName}ScreenModel: HCMVPModel {{\n"
                  f"\tpublic var trackableName: String?\n"
                  "\trequired public init() {}\n"
@@ -26,7 +26,7 @@ def generate(inputName: str = "Test"):
     fPresenter = open(f"./HC{inputName}ScreenPresenter.swift", "w")
     fPresenter.write("import Foundation\n"
                      "import HCBaseModule\n"
-                     "import HCViewModule\n"
+                     "import HCViewModule\n\n"
                      f"open class HC{inputName}ScreenPresenter: MVPPresenter<HC{inputName}Screen, HC{inputName}ScreenModel> {{\n"
                      f"\tpublic required init() {{}}\n"
                      f"}}\n"
